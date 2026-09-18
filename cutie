@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Arrow Heart Game ❤️</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#070d18;font-family:Arial,sans-serif;color:white}
+#game{position:relative;width:100vw;height:100vh;touch-action:none;overflow:hidden;
+background:radial-gradient(circle at 50% 65%,#17263b 0,#0b1422 48%,#050912 100%)}
+.moon{position:absolute;right:14%;top:8%;width:70px;height:70px;border-radius:50%;background:#fff8c9;box-shadow:0 0 35px #fff8c9}
+.stars{position:absolute;inset:0;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:43px 43px;opacity:.35}
+#title{position:absolute;top:22px;width:100%;text-align:center;font-size:18px;letter-spacing:1px;color:#55f5ff;text-shadow:0 0 12px #0ff}
+#score{position:absolute;top:52px;width:100%;text-align:center;font-size:16px}
+#heart{position:absolute;left:50%;top:34%;width:82px;height:74px;transform:translate(-50%,-50%) rotate(-45deg);
+background:#ff0874;border-radius:12px;box-shadow:0 0 22px #ff0874,0 0 50px #ff0874;cursor:pointer}
+#heart:before,#heart:after{content:"";position:absolute;width:82px;height:74px;background:#ff0874;border-radius:50%}
+#heart:before{top:-40px;left:0}#heart:after{left:40px;top:0}
+#heart.hit{animation:bloom .55s ease}
+@keyframes bloom{50%{transform:translate(-50%,-50%) rotate(-45deg) scale(1.45);filter:brightness(1.5)}}
+#bow{position:absolute;bottom:40px;left:50%;width:105px;height:105px;transform:translateX(-50%);border-left:6px solid #8d5c47;border-radius:50% 0 0 50%;box-shadow:-10px 0 0 -7px #1ee7ff}
+#arrow{position:absolute;width:4px;height:150px;background:#eee;left:50%;bottom:80px;transform-origin:50% 100%;transform:translateX(-50%) rotate(0deg);border-radius:3px;display:none}
+#arrow:after{content:"";position:absolute;top:-8px;left:-5px;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:13px solid #eee}
+#hint{position:absolute;bottom:175px;width:100%;text-align:center;color:#b9c7d9;font-size:14px}
+#msg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;font-size:28px;font-weight:bold;text-shadow:0 0 15px #ff0874;opacity:0}
+#again{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);border:1px solid #6c8198;background:#142237;color:white;border-radius:22px;padding:10px 18px;display:none}
+</style>
+</head>
+<body>
+<div id="game">
+<div class="stars"></div><div class="moon"></div>
+<div id="title">HIT THE HEART TO BLOOM ✨</div>
+<div id="score">Hits: 0</div>
+<div id="heart"></div>
+<div id="bow"></div><div id="arrow"></div>
+<div id="hint">Tap the glowing heart to shoot 💘</div>
+<div id="msg">❤️ BLOOM! ✨</div>
+<button id="again">Play again</button>
+</div>
+<script>
+const heart=document.getElementById('heart'),score=document.getElementById('score'),
+arrow=document.getElementById('arrow'),msg=document.getElementById('msg'),again=document.getElementById('again');
+let hits=0,locked=false;
+function shoot(){
+ if(locked)return; locked=true;
+ arrow.style.display='block';
+ arrow.animate([{transform:'translateX(-50%) rotate(0deg)',opacity:1},
+ {transform:'translateX(-50%) rotate(0deg) translateY(-38vh)',opacity:.2}],{duration:420,easing:'ease-out'});
+ setTimeout(()=>{
+  hits++;score.textContent='Hits: '+hits;
+  heart.classList.remove('hit'); void heart.offsetWidth; heart.classList.add('hit');
+  msg.style.opacity=1; msg.animate([{opacity:0},{opacity:1},{opacity:0}],{duration:900});
+  arrow.style.display='none';
+  locked=false;
+ },420);
+}
+heart.addEventListener('pointerdown',shoot);
+again.onclick=()=>{hits=0;score.textContent='Hits: 0';again.style.display='none'};
+</script>
+</body></html>
+```[cite: 2]
+
+---
+
+### 3. Deploying via GitHub Pages
+1. Create a GitHub repository named `arrow-heart-game`[cite: 3].
+2. Upload the `index.html` file into the main branch[cite: 3].
+3. Go to **Repository Settings** > **Pages** and set Source to `main` branch[cite: 3].
+4. The QR code above points to your GitHub page link: `[https://shnak962715-web.github.io/arrow-heart-game/](https://shnak962715-web.github.io/arrow-heart-game/)`[cite: 3].
